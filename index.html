@@ -1,26 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Snake Game</title>
-	<link rel="stylesheet" href="style.css">
+  
+  <title>ألة حاسبة </title>
+  <style>
+    body{
+      background:grey;
+    }
+    Button{
+      background:deepskyblue;
+      color:white;
+      width:230px;
+      height:200px;
+      font-size:120px;
+      
+    }
+    input{
+      width:900px;
+      height:300px;
+      font-size:90px;
+    }
+    #z{
+      background:orange;
+    }
+    #x{
+      color:whitesmoke;
+background:limegreen;
+    
+    }
+    #c{
+      color:red;
+      background: floralwhite;
+    }
+    #v{
+      color:red;
+    }
+    #b{
+      color:blueviolet;
+    }
+  </style>
 </head>
 <body>
-	<div id="game-container">
-		<canvas id="gc" class="game-canvas" width="400" height="400"></canvas>
-	</div>
-	<div class="keys">
-	  <a class="up arr" onclick="Snake.action('up')">
-	    <i class="chevron up"></i></a>
-	  <br />
-	  <a class="left arr" onclick="Snake.action('left')">
-	    <i class="chevron left"></i></a>
-	  <a class="down arr" onclick="Snake.action('down')">
-	    <i class="chevron down"></i></a>
-	  <a class="right arr" onclick="Snake.action('right')">
-	    <i class="chevron right"></i></a>
-	</div>
-	<script type="text/javascript" src="game.js"></script>
+  
+  <div>
+    <input type="text" id="get" readonly   >
+  
+  </div>
+  <br>
+  <hr>
+  <hr>
+  <div>
+    <Button onclick="yes('1')">1</Button>
+    <Button onclick="yes('2')">2</Button>
+    <Button onclick="yes('3')">3</Button>
+    <Button id="b" onclick="yes('*')">×</Button>
+    <br>
+    <Button onclick="yes('4')">4</Button>
+    <Button onclick="yes('5')">5</Button>
+    <Button onclick="yes('6')">6</Button>
+    <Button id="c" onclick="yes('+')">+</Button>
+    <br>
+    <Button onclick="yes('7')">7</Button>
+    <Button onclick="yes('8')">8</Button>
+    <Button onclick="yes('9')">9</Button>
+    <Button id="x"onclick="red()">=</Button>
+    <br>
+    <Button onclick="yes('/')">÷</Button>
+    
+    <Button onclick="yes('0')">0</Button>
+    <Button onclick="yes('-')">-</Button>
+    <Button onclick="blue()"id="z">AC</Button>
+    <br>
+    <Button id="v" onclick="yes('%')">%</Button>
+    <Button onclick="yes('.')">.</Button>
+    <Button onclick="yes('( ')" >()</Button>
+    <Button onclick="no('')">⬅️</Button>
+  </div>
+  <hr>
+  <hr>
+  <script>
+    const get=document.getElementById('get');
+  
+    function yes(value){
+      get.value+=value;
+      
+      
+    }
+    
+    function no(value){
+      h=delete(value);
+      h='';
+      get.value=h;
+    }
+    function red(){
+      
+     const result=eval(get.value);
+      get.value=result;
+     
+    }
+    
+    function blue(){
+      get.value='';
+    }
+    
+  </script>
 </body>
 </html>

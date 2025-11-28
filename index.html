@@ -3,108 +3,153 @@
 
 <head>
   <meta charset="UTF-8">
-  
-  <title>ألة حاسبة </title>
   <style>
     body{
       background:grey;
     }
+    input{
+      width:1000px;
+      height:300px;
+      font-size:170px;
+    }
     Button{
+      width:235px;
+      height:200px;
+      font-size:150px;
       background:deepskyblue;
       color:white;
-      width:230px;
-      height:200px;
-      font-size:120px;
-      
     }
-    input{
-      width:900px;
-      height:300px;
-      font-size:90px;
+    .z{
+      color:red;
+      background:whitesmoke;
     }
-    #z{
+    .x{
       background:orange;
     }
-    #x{
-      color:whitesmoke;
-background:limegreen;
-    
-    }
-    #c{
+    .c{
       color:red;
-      background: floralwhite;
+      background:antiquewhite;
     }
-    #v{
+    .v{
       color:red;
+      background:skyblue;
     }
-    #b{
-      color:blueviolet;
+    .b{
+      background:limegreen;
+    }
+    .nn{
+      background:dodgerblue;
+      width:800px;
+      height:250px;
+    }
+    .mm{
+      background:dodgerblue;
+      width:800px;
+      height:250px;
     }
   </style>
+  
+  <title> الة حاسبة</title>
 </head>
+<input type="text" id="m" onkeyup="ko">
+<input type="text" id="y" disabled>
+<br>
+<Button onclick="yes('%')" class="z">%</Button>
+<Button onclick="yes('/')">÷</Button>
+<Button onclick="yes('.')">.</Button>
+<Button onclick="no()" class="x">C</Button>
+<br>
+<Button onclick="yes('1')">1</Button>
+<Button onclick="yes('2')">2</Button>
+<Button onclick="yes('3')">3</Button>
+<Button onclick="yes('*')" class="v">×</Button>
+<br>
+<Button onclick="yes('4')">4</Button>
+<Button onclick="yes('5')">5</Button>
+<Button onclick="yes('6')">6</Button>
+<Button onclick="yes('+')" class="c">+</Button>
+<br>
+<Button onclick="yes('7')">7</Button>
+<Button onclick="yes('8')">8</Button>
+<Button onclick="yes('9')">9</Button>
+<Button onclick="ddd()">⬅️</Button>
+<br>
+<Button onclick="yes('-')">-</Button>
+<Button onclick="yes('0')">0</Button>
+<Button onclick="ff()">()</Button>
+<Button onclick="red()" class="b">=</Button>
+<br>
+<Button onclick="yyyy()" class="nn">سجل العمليات </Button>
+<br>
+<Button onclick="def()" class="mm">حذف العمليات </Button>
+<script>
+let his=[];
+function ddd(){
+  m.value=m.value.slice(0,-1);
+  ko();
+}
+function no(){
+  m.value='';
+  y.value='';
+}
+function def(){
+  his="";
+  alert('تم حذف سجل العمليات ')
+}
+function yyyy(){
+  if(his.length===0){
+    alert('لا يوجد اي عمليات بعد ')
+    return;
+  }
+  alert(his.join('\n'));
+}
+  const m=document.getElementById('m');
+  function yes(value){
+    m.value +=value;
+    ko();
+  }
+  function ko(){
+    const m=document.getElementById('m').value;
+    const y=document.getElementById('y');
+    if(m.trim()===''){
+      y.value='';
+      return;
+    }
+    try{
+      result=eval(m);
+      if(result === Infinity || result=== -Infinity){
+        y.value="Error";
+        
+      }
+      y.value=result;
+      
+    }
+    catch(e){
+      y.value='';
+    }
+  }
+  function red(){
+    if(m.value.trim()===''){
+      return;
+    }
+    nm=m.value;
+    const re=eval(nm);
+    his.push(`${nm}=${re}`);
+    m.value=re;
+  }
+let hhh='(';
+  function ff(){
+  
+    m.value+=hhh;
+    y.value+=hhh;
+    hhh=(hhh==='(')?')':'(';
+    
+    
+  }
+  
+</script>
 <body>
   
-  <div>
-    <input type="text" id="get" readonly   >
-  
-  </div>
-  <br>
-  <hr>
-  <hr>
-  <div>
-    <Button onclick="yes('1')">1</Button>
-    <Button onclick="yes('2')">2</Button>
-    <Button onclick="yes('3')">3</Button>
-    <Button id="b" onclick="yes('*')">×</Button>
-    <br>
-    <Button onclick="yes('4')">4</Button>
-    <Button onclick="yes('5')">5</Button>
-    <Button onclick="yes('6')">6</Button>
-    <Button id="c" onclick="yes('+')">+</Button>
-    <br>
-    <Button onclick="yes('7')">7</Button>
-    <Button onclick="yes('8')">8</Button>
-    <Button onclick="yes('9')">9</Button>
-    <Button id="x"onclick="red()">=</Button>
-    <br>
-    <Button onclick="yes('/')">÷</Button>
-    
-    <Button onclick="yes('0')">0</Button>
-    <Button onclick="yes('-')">-</Button>
-    <Button onclick="blue()"id="z">AC</Button>
-    <br>
-    <Button id="v" onclick="yes('%')">%</Button>
-    <Button onclick="yes('.')">.</Button>
-    <Button onclick="yes('( ')" >()</Button>
-    <Button onclick="no('')">⬅️</Button>
-  </div>
-  <hr>
-  <hr>
-  <script>
-    const get=document.getElementById('get');
-  
-    function yes(value){
-      get.value+=value;
-      
-      
-    }
-    
-    function no(value){
-      h=delete(value);
-      h='';
-      get.value=h;
-    }
-    function red(){
-      
-     const result=eval(get.value);
-      get.value=result;
-     
-    }
-    
-    function blue(){
-      get.value='';
-    }
-    
-  </script>
 </body>
+
 </html>

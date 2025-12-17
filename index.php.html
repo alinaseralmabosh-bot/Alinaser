@@ -1,0 +1,59 @@
+<?php
+// 1. إعداد متغيرات فارغة لحفظ البيانات المدخلة في الحقول
+$name = ""; $pass = ""; $email = ""; $msg = "";
+
+// 2. إنشاء قاعدة البيانات والجدول تلقائياً (أبسط طريقة)
+$conn = mysqli_connect("localhost", "root", ""); // الاتصال بالسيرفر
+mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS my_db"); // إنشاء قاعدة بيانات
+mysqli_select_db($conn, "my_db"); // اختيار القاعدة
+mysqli_query($conn, "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name TEXT, password TEXT, email TEXT)");
+
+// 3. معالجة البيانات عند الضغط على زر "تسجيل"
+if (isset($_POST['yes'])) {
+    $name = $_POST['name'];
+    $pass = $_POST['password'];
+    $email = $_POST['email'];
+
+    if (!empty($name) && !empty($pass)) {
+        // حفظ البيانات في الجدول
+        $sql = "INSERT INTO users (name, password, email) VALUES ('$name', '$pass', '$email')";
+        if (mysqli_query($conn, $sql)) {
+            $msg = "تم تسجيل البيانات بنجاح في قاعدة البيانات!";
+        }
+    } else {
+        $msg = "يرجى ملء الاسم وكلمة المرور!";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { background: gray; text-align: center; font-family: sans-serif; }
+    div { background: deepskyblue; margin: 50px auto; width: 600px; padding: 40px; border-radius: 10px; }
+    input { text-align: center; font-size: 30px; border-radius: 10px; margin-bottom: 10px; width: 90%; }
+    button { background: #28a745; font-size: 30px; color: white; border-radius: 10px; cursor: pointer; width: 50%; }
+    h2 { color: yellow; }
+  </style>
+  <title>تسجيل الدخول</title>
+</head>
+<body>
+
+  <div>
+    <?php if($msg) echo "<h2>$msg</h2>"; ?>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="الاسم" value="<?php echo $name; ?>">
+        <br>
+        <input type="password" name="password" placeholder="كلمة المرور" value="<?php echo $pass; ?>">
+        <br>
+        <input type="email" name="email" placeholder="البريد الإلكتروني" value="<?php echo $email; ?>">
+        <br> 
+        <button type="submit" name="yes">تسجيل</button>
+    </form>
+  </div>
+
+</body>
+</html>

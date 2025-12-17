@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+  <style>
+    p{
+      background:#28a745;
+      color:white;
+      font-size:60px;
+      border-radius:10px;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+
+ 
+
+ <?php 
+  $name="";
+  if(isset($_POST['yes'])){
+    echo "<p>تم تسجيل الدخول </p>";
+    if(isset($_POST['name'])){
+      $name=$_POST['name'];
+       echo "<p>$name</p>"."<br>";
+    
+  }
+    else{
+      echo "<p> يرجى ادخال الاسم</p>";
+    
+  }
+  }
+  
+  ?>
+
+</body>
+
+</html>

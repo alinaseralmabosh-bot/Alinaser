@@ -4,152 +4,49 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    body{
-      background:grey;
+  body{
+    background:gray;
+  }
+    div{
+      background:deepskyblue;
+      text-align:center;
+      position:relative;
+      top:500px;
+      width:980px;
+      height:600px;
+  
+      border-radius:10px;
     }
     input{
-      width:1000px;
-      height:300px;
-      font-size:170px;
+      text-align:center;
+      font-size:60px;
+      border-radius:10px;
+    
     }
-    Button{
-      width:235px;
-      height:200px;
-      font-size:150px;
-      background:deepskyblue;
+    button{
+      background:#28a745;
+      font-size:60px;
       color:white;
-    }
-    .z{
-      color:red;
-      background:whitesmoke;
-    }
-    .x{
-      background:orange;
-    }
-    .c{
-      color:red;
-      background:antiquewhite;
-    }
-    .v{
-      color:red;
-      background:skyblue;
-    }
-    .b{
-      background:limegreen;
-    }
-    .nn{
-      background:dodgerblue;
-      width:800px;
-      height:250px;
-    }
-    .mm{
-      background:dodgerblue;
-      width:800px;
-      height:250px;
+      border-radius:10px;
     }
   </style>
   
-  <title> الة حاسبة</title>
+  <title>تسجيل الدخول لانشاء حساب </title>
 </head>
-<input type="text" id="m" onkeyup="ko">
-<input type="text" id="y" disabled>
-<br>
-<Button onclick="yes('%')" class="z">%</Button>
-<Button onclick="yes('/')">÷</Button>
-<Button onclick="yes('.')">.</Button>
-<Button onclick="no()" class="x">C</Button>
-<br>
-<Button onclick="yes('1')">1</Button>
-<Button onclick="yes('2')">2</Button>
-<Button onclick="yes('3')">3</Button>
-<Button onclick="yes('*')" class="v">×</Button>
-<br>
-<Button onclick="yes('4')">4</Button>
-<Button onclick="yes('5')">5</Button>
-<Button onclick="yes('6')">6</Button>
-<Button onclick="yes('+')" class="c">+</Button>
-<br>
-<Button onclick="yes('7')">7</Button>
-<Button onclick="yes('8')">8</Button>
-<Button onclick="yes('9')">9</Button>
-<Button onclick="ddd()">⬅️</Button>
-<br>
-<Button onclick="yes('-')">-</Button>
-<Button onclick="yes('0')">0</Button>
-<Button onclick="ff()">()</Button>
-<Button onclick="red()" class="b">=</Button>
-<br>
-<Button onclick="yyyy()" class="nn">سجل العمليات </Button>
-<br>
-<Button onclick="def()" class="mm">حذف العمليات </Button>
-<script>
-let his=[];
-function ddd(){
-  m.value=m.value.slice(0,-1);
-  ko();
-}
-function no(){
-  m.value='';
-  y.value='';
-}
-function def(){
-  his="";
-  alert('تم حذف سجل العمليات ')
-}
-function yyyy(){
-  if(his.length===0){
-    alert('لا يوجد اي عمليات بعد ')
-    return;
-  }
-  alert(his.join('\n'));
-}
-  const m=document.getElementById('m');
-  function yes(value){
-    m.value +=value;
-    ko();
-  }
-  function ko(){
-    const m=document.getElementById('m').value;
-    const y=document.getElementById('y');
-    if(m.trim()===''){
-      y.value='';
-      return;
-    }
-    try{
-      result=eval(m);
-      if(result === Infinity || result=== -Infinity){
-        y.value="Error";
-        
-      }
-      y.value=result;
-      
-    }
-    catch(e){
-      y.value='';
-    }
-  }
-  function red(){
-    if(m.value.trim()===''){
-      return;
-    }
-    nm=m.value;
-    const re=eval(nm);
-    his.push(`${nm}=${re}`);
-    m.value=re;
-  }
-let hhh='(';
-  function ff(){
-  
-    m.value+=hhh;
-    y.value+=hhh;
-    hhh=(hhh==='(')?')':'(';
-    
-    
-  }
-  
-</script>
 <body>
-  
+  <div>
+<form action="ix.php.index" method="POST">
+    <input type="text" 
+    name="name" placeholder="الاسم "
+    >
+    <br>
+    
+    <input type="password" name="password" placeholder="كلمة المرور">
+    <br>
+    <input type="email" name="email" placeholder="البريد الإلكتروني">
+    <br> 
+    <button  type="submit" name="yes">تسجيل </button>
+  </form>
+  </div>
 </body>
-
 </html>
